@@ -21,4 +21,12 @@
 
 @property (nonatomic, weak) id<MyTabBarDelegate>myTabBarDelegate;
 
+@property (nonatomic, assign) NSInteger maxNumber;
+
+// 指向中间“+” 按钮
+@property (nonatomic, strong) UIButton *addButton;
+
+// 指向“添加” 标签
+@property (nonatomic, strong) UILabel *addLabel;
+
 @end

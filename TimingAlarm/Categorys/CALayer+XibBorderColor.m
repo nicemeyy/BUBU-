@@ -6,8 +6,13 @@
 //  Copyright © 2018年 Mac. All rights reserved.
 //
 
+// 设置xib BorderColor
 #import "CALayer+XibBorderColor.h"
 
 @implementation CALayer (XibBorderColor)
+
+- (void)setBorderColorWithUIColor:(UIColor *)color{
+    self.borderColor = color.CGColor;
+}
 
 @end

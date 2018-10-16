@@ -10,4 +10,11 @@
 
 @interface ShowAlarmOneTableViewCell : UITableViewCell
 
+
+@property (weak, nonatomic) IBOutlet UILabel *time;
+
+@property (weak, nonatomic) IBOutlet UILabel *title;
+
+@property (weak, nonatomic) IBOutlet UISwitch *switchCell;
+
 @end

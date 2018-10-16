@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^BlockAlarm)(NSString *string, NSMutableArray *array);
+
 @interface AlarmAlterView : UIView
+
+@property (nonatomic, copy) BlockAlarm blockAlarm;
+
++ (instancetype)alterView;
+
+@property (nonatomic, strong) NSMutableArray *arrayData;
+
+@property (weak, nonatomic) IBOutlet UIView *topView;
+
+@property (weak, nonatomic) IBOutlet UIView *buttonView;
+
 
 @end

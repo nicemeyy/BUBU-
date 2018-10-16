@@ -7,8 +7,12 @@
 //
 
 #import "RemarkViewController.h"
+#import "AlarmViewController.h"
 
 @interface RemarkViewController ()
+@property (strong, nonatomic) IBOutlet UIButton *cancalBtn;
+@property (strong, nonatomic) IBOutlet UIButton *saveBtn;
+@property (strong, nonatomic) IBOutlet UITextView *remartTextView;
 
 @end
 
@@ -16,17 +20,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    _remartTextView.limitLength = @300;
+    _remartTextView.placeholder = @"请输入您的备注内容";
+    _remartTextView.placeholdColor = [UIColor lightGrayColor];
+    _remartTextView.limitPlaceColor = [UIColor lightGrayColor];
+    _remartTextView.placeholdFont = [UIFont systemFontOfSize:17];
+    _remartTextView.limitPlaceFont = [UIFont systemFontOfSize:17];
+    _remartTextView.font = [UIFont systemFontOfSize:17];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
+    tap.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tap];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)keyboardHide:(UITapGestureRecognizer *)tap
+{
+    [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 }
-*/
+
+- (IBAction)cancalClick:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)saveClick:(id)sender {
+    [self.delegate sendValue:_remartTextView.text];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 
 @end

@@ -10,4 +10,7 @@
 
 @interface MyCollectionViewCell : UICollectionViewCell
 
+@property (nonatomic, strong) NSString * calendarTitle;// 日期标题
+@property (nonatomic, strong) UIColor * calendarTitleColor;// 日期标题字体颜色
+
 @end

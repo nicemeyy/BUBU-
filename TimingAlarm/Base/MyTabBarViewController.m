@@ -7,8 +7,12 @@
 //
 
 #import "MyTabBarViewController.h"
+#import "MyTabBar.h"
+#import "AlarmViewController.h"
+#import "MainViewController.h"
+#import "ShowAlarmViewController.h"
 
-@interface MyTabBarViewController ()
+@interface MyTabBarViewController ()<MyTabBarDelegate>
 
 @end
 
@@ -16,22 +20,42 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    //创建自定义TabBar
+    MyTabBar *tabBar = [[MyTabBar alloc] init];
+    tabBar.myTabBarDelegate = self;
+    tabBar.maxNumber = 3;
+    //利用KVC替换默认的TabBar
+    [self setValue:tabBar forKey:@"tabBar"];
+    
+    self.selectedIndex = 0;
+    
+    MainViewController *mainView = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
+    [self addChildController:mainView title:@"日历" imageName:@"calendar" selectedImageName:@"calendarSel" navVc:[UINavigationController class]];
+
+    ShowAlarmViewController *alarmView = [[ShowAlarmViewController alloc] initWithNibName:@"ShowAlarmViewController" bundle:nil];
+    [self addChildController:alarmView title:@"闹钟" imageName:@"alarm" selectedImageName:@"alarmSel" navVc:[UINavigationController class]];
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)addChildController:(UIViewController*)childController title:(NSString*)title imageName:(NSString*)imageName selectedImageName:(NSString*)selectedImageName navVc:(Class)navVc
+{
+    childController.title = title;
+    childController.tabBarItem.image = [[UIImage imageNamed:imageName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    childController.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    // 设置一下选中tabbar文字颜色
+    
+    [childController.tabBarItem setTitleTextAttributes:@{ NSForegroundColorAttributeName : kUIColorFromHex(0x2A9E86) }forState:UIControlStateSelected];
+    childController.tabBarItem.titlePositionAdjustment = UIOffsetMake(0, -2);
+    [self addChildViewController:childController];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - MyTabBarDelegate 方法
+-(void)addButtonClick:(MyTabBar *)tabBar
+{
+    //测试中间“+”按钮是否可以点击并处理事件
+    AlarmViewController *alarmView = [[AlarmViewController alloc] initWithNibName:@"AlarmViewController" bundle:nil];
+    [self presentViewController:alarmView animated:YES completion:nil];;
 }
-*/
 
 @end

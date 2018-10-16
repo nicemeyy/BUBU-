@@ -12,12 +12,6 @@
 
 @interface MyTabBar()
 
-// 指向中间“+” 按钮
-@property (nonatomic, strong) UIButton *addButton;
-
-// 指向“添加” 标签
-@property (nonatomic, strong) UILabel *addLabel;
-
 @end
 
 @implementation MyTabBar
@@ -27,11 +21,18 @@
     if (self) {
         // 创建中间 按钮
         UIButton *addBtn = [[UIButton alloc] init];
-        [addBtn setBackgroundImage:[UIImage imageNamed:@"circle_next"] forState:UIControlStateNormal];
-        [addBtn setBackgroundImage:[UIImage imageNamed:@"circle_prev"] forState:UIControlStateHighlighted];
+        [addBtn setBackgroundImage:[UIImage imageNamed:@"addImage"] forState:UIControlStateNormal];
+        [addBtn setBackgroundImage:[UIImage imageNamed:@"addImage"] forState:UIControlStateHighlighted];
         [addBtn addTarget:self action:@selector(addBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:addBtn];
         self.addButton = addBtn;
+        
+//        self.backgroundImage = [UIImage new];
+//        self.shadowImage = [UIImage new];
+//
+//        self.layer.shadowColor = [UIColor lightGrayColor].CGColor;
+//        self.layer.shadowOffset = CGSizeMake(0, -5);
+//        self.layer.shadowOpacity = 0.3;
     }
     return self;
 }
@@ -60,14 +61,13 @@
     
     //创建并设置“+” 按钮下方的文本为添加
     UILabel *addLbl = [[UILabel alloc] init];
-    addLbl.text = @"添加";
     addLbl.font = [UIFont systemFontOfSize:10];
-    addLbl.textColor = [UIColor grayColor];
+    addLbl.textColor = [UIColor blackColor];
     [addLbl sizeToFit];
     
     //设置label位置
     addLbl.centerX = self.addButton.centerX;
-    addLbl.centerY = CGRectGetMaxY(self.addButton.frame) + 0.5 * AddButtonMargin + 0.5;
+    addLbl.centerY = CGRectGetMaxY(self.addButton.frame) + 0.5 * AddButtonMargin + 2;
     [self addSubview:addLbl];
     
     self.addLabel = addLbl;
@@ -80,7 +80,7 @@
         if ([btn isKindOfClass:class]) { // 如果是系统的UITabBarButton, 那么就调整子控件位置，空出中间位置
             
             //每一个按钮的宽度等于TabBar的三分之一
-            btn.width = self.width / 3;
+            btn.width = self.width / self.maxNumber;
             btn.x = btn.width * btnIndex;
             btnIndex++;
             

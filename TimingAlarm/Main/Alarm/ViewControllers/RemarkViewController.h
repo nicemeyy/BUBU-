@@ -8,9 +8,16 @@
 
 #import "BaseViewController.h"
 
+@protocol RemarkViewControllerDelegate <NSObject>
+
+- (void)sendValue:(NSString *)value; //声明协议方法
+@end
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RemarkViewController : BaseViewController
+
+@property (nonatomic, weak)id <RemarkViewControllerDelegate> delegate;
 
 @end
 

@@ -13,7 +13,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    self.switchBtn.onTintColor = kColorActionBlue;
+    self.switchBtn.onTintColor = [UIColor blueColor];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 - (IBAction)questionClick:(id)sender {
