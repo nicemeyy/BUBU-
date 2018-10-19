@@ -47,7 +47,7 @@
                         <action selector="saveClick:" destination="-1" eventType="touchUpInside" id="rsB-ju-QfN"/>
                     </connections>
                 </button>
-                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="fnx-8p-5ge">
+                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="fnx-8p-5ge">
                     <rect key="frame" x="0.0" y="83" width="375" height="202"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="202" id="Cbj-hv-Ujz"/>

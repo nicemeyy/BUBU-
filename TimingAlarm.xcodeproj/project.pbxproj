@@ -40,6 +40,9 @@
 		04A74DF5212FD3E200B6BC5D /* ShowAlarmTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A74DF3212FD3E200B6BC5D /* ShowAlarmTableViewCell.xib */; };
 		04A74DF9212FD66700B6BC5D /* ShowAlarmOneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A74DF7212FD66700B6BC5D /* ShowAlarmOneTableViewCell.m */; };
 		04A74DFA212FD66700B6BC5D /* ShowAlarmOneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A74DF8212FD66700B6BC5D /* ShowAlarmOneTableViewCell.xib */; };
+		858F54432179733300306B45 /* SSQTextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 858F54402179733300306B45 /* SSQTextFieldCell.xib */; };
+		858F54442179733300306B45 /* SSQTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 858F54412179733300306B45 /* SSQTextFieldCell.m */; };
+		858F544B2179782F00306B45 /* JXTAlertTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 858F544A2179782F00306B45 /* JXTAlertTools.m */; };
 		B596BFD7217591280018CEB6 /* SSQSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B596BFD4217591270018CEB6 /* SSQSwitchCell.xib */; };
 		B596BFD8217591280018CEB6 /* SSQSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B596BFD6217591280018CEB6 /* SSQSwitchCell.m */; };
 		B596BFDF217597160018CEB6 /* RemarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B596BFDD217597160018CEB6 /* RemarkViewController.m */; };
@@ -125,6 +128,11 @@
 		04A74DF6212FD66700B6BC5D /* ShowAlarmOneTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowAlarmOneTableViewCell.h; sourceTree = "<group>"; };
 		04A74DF7212FD66700B6BC5D /* ShowAlarmOneTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowAlarmOneTableViewCell.m; sourceTree = "<group>"; };
 		04A74DF8212FD66700B6BC5D /* ShowAlarmOneTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowAlarmOneTableViewCell.xib; sourceTree = "<group>"; };
+		858F54402179733300306B45 /* SSQTextFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SSQTextFieldCell.xib; sourceTree = "<group>"; };
+		858F54412179733300306B45 /* SSQTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSQTextFieldCell.m; sourceTree = "<group>"; };
+		858F54422179733300306B45 /* SSQTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSQTextFieldCell.h; sourceTree = "<group>"; };
+		858F54492179782F00306B45 /* JXTAlertTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXTAlertTools.h; sourceTree = "<group>"; };
+		858F544A2179782F00306B45 /* JXTAlertTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXTAlertTools.m; sourceTree = "<group>"; };
 		B596BFD4217591270018CEB6 /* SSQSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SSQSwitchCell.xib; sourceTree = "<group>"; };
 		B596BFD5217591280018CEB6 /* SSQSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSQSwitchCell.h; sourceTree = "<group>"; };
 		B596BFD6217591280018CEB6 /* SSQSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSQSwitchCell.m; sourceTree = "<group>"; };
@@ -222,6 +230,7 @@
 		048CB57F211D31E400C96002 /* TimingAlarm */ = {
 			isa = PBXGroup;
 			children = (
+				858F54452179780D00306B45 /* libs */,
 				048CB69E212427E200C96002 /* Categorys */,
 				048CB673211D7B0300C96002 /* Const */,
 				048CB5B9211D34F700C96002 /* Base */,
@@ -333,6 +342,9 @@
 		048CB6982124212600C96002 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				858F54422179733300306B45 /* SSQTextFieldCell.h */,
+				858F54412179733300306B45 /* SSQTextFieldCell.m */,
+				858F54402179733300306B45 /* SSQTextFieldCell.xib */,
 				B596BFD5217591280018CEB6 /* SSQSwitchCell.h */,
 				B596BFD6217591280018CEB6 /* SSQSwitchCell.m */,
 				B596BFD4217591270018CEB6 /* SSQSwitchCell.xib */,
@@ -363,6 +375,23 @@
 				048CB6A3212433BF00C96002 /* CALayer+XibBorderColor.m */,
 			);
 			path = Categorys;
+			sourceTree = "<group>";
+		};
+		858F54452179780D00306B45 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				858F54482179782F00306B45 /* JXTLibrary */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		858F54482179782F00306B45 /* JXTLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				858F54492179782F00306B45 /* JXTAlertTools.h */,
+				858F544A2179782F00306B45 /* JXTAlertTools.m */,
+			);
+			path = JXTLibrary;
 			sourceTree = "<group>";
 		};
 		B596BFE72175C9F50018CEB6 /* Model */ = {
@@ -484,6 +513,7 @@
 				04844310212EB723005C4003 /* MainViewController.xib in Resources */,
 				04844309212EB71B005C4003 /* MyCollectionViewCell.xib in Resources */,
 				048CB58A211D31E500C96002 /* Assets.xcassets in Resources */,
+				858F54432179733300306B45 /* SSQTextFieldCell.xib in Resources */,
 				04A74DFA212FD66700B6BC5D /* ShowAlarmOneTableViewCell.xib in Resources */,
 				B596BFD7217591280018CEB6 /* SSQSwitchCell.xib in Resources */,
 				048CB69D2124215600C96002 /* AlarmAlterView.xib in Resources */,
@@ -519,6 +549,7 @@
 				B596BFE62175C9EA0018CEB6 /* Remark.m in Sources */,
 				B596BFE32175BCEF0018CEB6 /* UITextView+YLTextView.m in Sources */,
 				04A74DF9212FD66700B6BC5D /* ShowAlarmOneTableViewCell.m in Sources */,
+				858F54442179733300306B45 /* SSQTextFieldCell.m in Sources */,
 				048CB6A1212427E200C96002 /* UIView+.m in Sources */,
 				04844311212EB723005C4003 /* MainViewController.m in Sources */,
 				04844315212EC189005C4003 /* ShowAlarmViewController.m in Sources */,
@@ -526,6 +557,7 @@
 				B596BFD8217591280018CEB6 /* SSQSwitchCell.m in Sources */,
 				048442E2212E9D1F005C4003 /* MyTabBarViewController.m in Sources */,
 				048CB69B2124214C00C96002 /* AlarmAlterView.m in Sources */,
+				858F544B2179782F00306B45 /* JXTAlertTools.m in Sources */,
 				048442EA212E9F3F005C4003 /* MyTabBar.m in Sources */,
 				043D834221256A66006BA773 /* MyCalendarManage.m in Sources */,
 				B596BFDF217597160018CEB6 /* RemarkViewController.m in Sources */,
@@ -699,7 +731,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LHY3WM866T;
+				DEVELOPMENT_TEAM = A8SPWGX67Q;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/TimingAlarm.pch";
 				INFOPLIST_FILE = TimingAlarm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -707,7 +739,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "-23243";
+				PRODUCT_BUNDLE_IDENTIFIER = "-11111";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -719,7 +751,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LHY3WM866T;
+				DEVELOPMENT_TEAM = A8SPWGX67Q;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/TimingAlarm.pch";
 				INFOPLIST_FILE = TimingAlarm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -727,7 +759,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "-23243";
+				PRODUCT_BUNDLE_IDENTIFIER = "-11111";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

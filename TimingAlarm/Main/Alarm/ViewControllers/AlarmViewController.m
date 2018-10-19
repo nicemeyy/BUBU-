@@ -12,6 +12,7 @@
 #import "AlarmAlterView.h"
 #import "SleepCycleView.h"
 #import "SSQSwitchCell.h"
+#import "SSQTextFieldCell.h"
 
 #import "Remark.h"
 
@@ -39,13 +40,16 @@
     
     self.title = @"添加事项";
     
-    self.arrayTitle = @[@"标题",@"响铃",@"备注"];
+    self.arrayTitle = @[@"标题",@"重要事件",@"备注"];
     
     self.mTableView.tableFooterView = [[UIView alloc] init];
     [self.mTableView registerNib:[UINib nibWithNibName:@"SSQSwitchCell" bundle:nil] forCellReuseIdentifier:@"SSQSwitchCell"];
+    [self.mTableView registerNib:[UINib nibWithNibName:@"SSQTextFieldCell" bundle:nil] forCellReuseIdentifier:@"SSQTextFieldCell"];
     self.arrayData = [[NSMutableArray alloc] initWithCapacity:0];
     
     _notification = YES;
+    
+    _datePicker.date = _date;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -70,40 +74,29 @@
     
     
     if (indexPath.row == 0) {
-        static NSString *string = @"cell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:string];
-        if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:string];
-        }
-        cell.textLabel.text = self.arrayTitle[indexPath.row];
+        SSQTextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SSQTextFieldCell"];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        if (indexPath.row == 0) {
-            cell.detailTextLabel.text = self.subtitleAlarmName;
-        }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
-        cell.textLabel.font = [UIFont systemFontOfSize:15];
+        cell.titleLabel.text = self.arrayTitle[indexPath.row];
+        cell.textField.placeholder = @"请输入标题";
+        cell.textFielfEditEnd = ^(NSString *name) {
+            self.subtitleAlarmName = name;
+        };
         return cell;
+
     } else if (indexPath.row == 1){
         SSQSwitchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SSQSwitchCell"];
+        __weak typeof(self) weakSelf = self;
         cell.switchOrderBlock = ^(BOOL isOrder) {
-            _notification = isOrder;
+            weakSelf.notification = isOrder;
         };
         return cell;
     } else {
-        static NSString *string = @"indentifier";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:string];
-        if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:string];
-        }
-        cell.textLabel.text = self.arrayTitle[indexPath.row];
+        SSQTextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SSQTextFieldCell"];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        if (indexPath.row == 2) {
-            cell.detailTextLabel.text = self.bremark;
-        }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
-        cell.textLabel.font = [UIFont systemFontOfSize:15];
+        cell.titleLabel.text = self.arrayTitle[indexPath.row];
+        cell.textField.placeholder = @"备注";
+        cell.textField.enabled = NO;
+        
         return cell;
     }
     
@@ -113,12 +106,7 @@
     
     if (indexPath.row == 0) {
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"输入闹钟标题" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"OK", nil];
-        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-        self.textField = [alert textFieldAtIndex:0];
-        self.textField.placeholder = @"标题";
-        self.textField.keyboardType = UIKeyboardTypeNamePhonePad;
-        [alert show];
+       
         
     }else if (indexPath.row == 1) {
         
@@ -167,21 +155,21 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView{
-    if (self.textField.text.length > 0) {
-        return YES;
-    }
-    return NO;
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 1) {
-        self.subtitleAlarmName = self.textField.text;
-        if (self.subtitleAlarmName.length > 0) {
-            [self.mTableView reloadData];
-        }
-    }
-}
+//- (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView{
+//    if (self.textField.text.length > 0) {
+//        return YES;
+//    }
+//    return NO;
+//}
+//
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+//    if (buttonIndex == 1) {
+//        self.subtitleAlarmName = self.textField.text;
+//        if (self.subtitleAlarmName.length > 0) {
+//            [self.mTableView reloadData];
+//        }
+//    }
+//}
 
 - (void)sendValue:(NSString *)value
 {
@@ -191,6 +179,10 @@
 - (IBAction)saveClick:(id)sender {
     
     if(_subtitleAlarmName.length <= 0 || !_subtitleAlarmName){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"请输入闹钟标题" message:nil delegate:self cancelButtonTitle:@"我知道了" otherButtonTitles:nil, nil];
+        alert.alertViewStyle = UIAlertViewStyleDefault;
+        
+        [alert show];
         return;
     }
     

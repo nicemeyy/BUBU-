@@ -137,7 +137,7 @@
         NSArray *arraySystem = [_systemDate componentsSeparatedByString:@"-"];
         NSString *distanceTime = [NSString stringWithFormat:@"%ld年%ld月%ld日 第%ld周",[arraySystem[0] integerValue],[arraySystem[1] integerValue],[arraySystem[2] integerValue],week];
         if (self.returnValueBlock) {
-            self.returnValueBlock(distanceTime);
+            self.returnValueBlock(distanceTime, nil);
         }
         
     }else{ // 上月 下月
@@ -297,7 +297,7 @@
     // block返回当前月份
     NSString *replacingDistance = [distanceTime stringByReplacingOccurrencesOfString:@"-" withString:@""];
     if (self.returnValueBlock) {
-        self.returnValueBlock(replacingDistance);
+        self.returnValueBlock(replacingDistance, dayDate);
     }
 }
 

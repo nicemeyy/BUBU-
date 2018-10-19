@@ -41,8 +41,19 @@
     [self initRecognizer];
     
     __weak typeof(self)weakSelf = self;
-    _calendar.returnValueBlock = ^(NSString *strValue) {
+    _calendar.returnValueBlock = ^(NSString *strValue, NSString *date) {
         weakSelf.selectDate.text = [NSString stringWithFormat:@"公历：%@",strValue];
+        
+        [JXTAlertTools showArrayAlertWith:[BaseViewController presentingVC] title:nil message:@"是否确认添加一个事项" callbackBlock:^(NSInteger btnIndex) {
+            if (btnIndex == 0) {
+                
+            } else {
+                AlarmViewController *VC = [[AlarmViewController alloc] init];
+                VC.date = [weakSelf dateFromString:date];
+                [weakSelf presentViewController:VC animated:YES completion:nil];
+            }
+            
+        } cancelButtonTitle:@"取消" otherButtonTitleArray:@[@"确认"] otherButtonStyleArray:@[[NSNumber numberWithInteger:JXTAlertActionStyleDefault]]];
     };
     _calendar.returnTitleValueBlock = ^(NSString *strValue) {
         weakSelf.nowMouth.text = strValue;
@@ -162,6 +173,12 @@
     
 }
 
-
+- (NSDate *)dateFromString:(NSString *)string
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];//解决8小时时间差问题
+    return [dateFormatter dateFromString:string];
+}
 
 @end

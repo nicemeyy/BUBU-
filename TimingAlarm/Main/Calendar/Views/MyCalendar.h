@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^ReturnValueBlock) (NSString *strValue);
+typedef void (^ReturnValueBlock) (NSString *strValue, NSString *date);
 typedef void (^ReturnTitleValueBlock) (NSString *strValue);
 
 @interface MyCalendar : UICollectionView

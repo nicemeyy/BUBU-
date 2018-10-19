@@ -10,6 +10,7 @@
 
 @interface AlarmViewController : BaseViewController
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (strong, nonatomic) NSDate  *date;
 @property (nonatomic, copy) NSString *bremark;
 
 @end
